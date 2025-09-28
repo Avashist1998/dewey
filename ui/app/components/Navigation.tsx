@@ -11,17 +11,17 @@ export default function Navigation() {
       <div className="max-w-4xl mx-auto px-4">
         <div className="flex items-center justify-between h-16">
           <div className="flex items-center">
-            <Link href="/" className="text-2xl font-bold text-gray-900 hover:text-blue-600 transition-colors">
+            <Link href="/" className="text-2xl font-bold text-gray-900">
               Dewey
             </Link>
           </div>
           <div className="flex space-x-8">
             <Link
               href="/lib"
-              className={`p-3 rounded-md transition-colors ${
+              className={`p-3 rounded-md ${
                 pathname === '/lib'
                   ? 'text-blue-600 bg-blue-50'
-                  : 'text-gray-600 hover:text-gray-900 hover:bg-gray-50'
+                  : 'text-gray-600'
               }`}
               title="Library"
             >

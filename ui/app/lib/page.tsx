@@ -6,7 +6,7 @@ import { useState } from 'react';
 import { useLibrary } from '../hooks/libHooks';
 
 export default function LibPage() {
-  const { libraryBooks, readBooks, wantToReadBooks, removeBook, markAsRead } = useLibrary();
+  const { libraryBooks, readBooks, wantToReadBooks, removeBook, markAsRead, markAsUnread } = useLibrary();
   const [viewState, setViewState] = useState<string>("Want to Read")
   const handleRemoveBook = (bookId: string) => {
     if (confirm('Are you sure you want to remove this book from your library?')) {
@@ -34,7 +34,7 @@ export default function LibPage() {
             <p className="text-gray-600 mb-4">Start building your collection by adding books from the feed</p>
             <a 
               href="/" 
-              className="bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700 transition-colors"
+              className="bg-blue-600 text-white px-4 py-2 rounded-md"
             >
               Browse Feed
             </a>
@@ -56,10 +56,10 @@ export default function LibPage() {
             {/* Toggle buttons positioned on the right */}
             <div className="flex space-x-1 bg-gray-100 p-1 rounded-lg">
               <button 
-                className={`flex items-center space-x-2 px-3 py-2 rounded-md text-sm font-medium transition-all duration-200 ${
+                className={`flex items-center space-x-2 px-3 py-2 rounded-md text-sm font-medium ${
                   viewState === "Want to Read" 
                     ? 'bg-white text-yellow-500 shadow-sm' 
-                    : 'text-gray-600 hover:text-gray-900 hover:bg-gray-50'
+                    : 'text-gray-600'
                 }`}
                 onClick={() => setViewState("Want to Read")}
               >
@@ -69,10 +69,10 @@ export default function LibPage() {
                 <span>Want to Read</span>
               </button>
               <button 
-                className={`flex items-center space-x-2 px-3 py-2 rounded-md text-sm font-medium transition-all duration-200 ${
+                className={`flex items-center space-x-2 px-3 py-2 rounded-md text-sm font-medium ${
                   viewState === "READ" 
                     ? 'bg-white text-green-600 shadow-sm' 
-                    : 'text-gray-600 hover:text-gray-900 hover:bg-gray-50'
+                    : 'text-gray-600'
                 }`}
                 onClick={() => setViewState("READ")}
               >
@@ -99,47 +99,26 @@ export default function LibPage() {
           ) : (
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
               {wantToReadBooks.map((book) => (
-                <div key={book.id} className="relative group">
-                  <div>
-                    <Card
-                      id={book.id}
-                      title={book.title}
-                      imageUrl={book.imageUrl}
-                      isRead={false}
-                      author={book.author}
-                      description={book.description}
-                    />
-                  </div>
-
+                <div key={book.id} className="relative">
                   {/* Status icon: Want to Read (yellow star in white circle) */}
-                  <div className="absolute top-6 right-6 bg-white text-yellow-500 w-8 h-8 rounded-full flex items-center justify-center shadow-lg" title="Want to Read" aria-label="Want to Read">
+                  <div className="absolute top-6 right-6 bg-white text-yellow-500 w-8 h-8 rounded-full flex items-center justify-center shadow-lg z-10" title="Want to Read" aria-label="Want to Read">
                     <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                       <path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z" />
                     </svg>
                   </div>
 
-                  {/* Hover overlay to confirm mark as read */}
-                  <div
-                    className="absolute inset-0 bg-green-600/20 opacity-0 group-hover:opacity-100 transition-opacity duration-200 rounded-lg flex items-center justify-center cursor-pointer"
-                    onClick={() => markAsRead(book.id)}
-                    aria-label="Mark as Read"
-                    title="Mark as Read"
-                  >
-                    <svg className="w-12 h-12" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">
-                      <path d="M5 13l4 4L19 7" />
-                    </svg>
-                  </div>
-
-                  {/* Remove button */}
-                  <button
-                    onClick={() => handleRemoveBook(book.id)}
-                    className="absolute top-2 left-2 bg-red-500 text-white p-1 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-200 hover:bg-red-600"
-                    title="Remove from library"
-                  >
-                    <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-                    </svg>
-                  </button>
+                  <Card
+                    id={book.id}
+                    title={book.title}
+                    imageUrl={book.imageUrl}
+                    isRead={false}
+                    author={book.author}
+                    description={book.description}
+                    showButtons={true}
+                    buttonType="want-to-read"
+                    onRead={() => markAsRead(book.id)}
+                    onTrash={() => handleRemoveBook(book.id)}
+                  />
                 </div>
               ))}
             </div>
@@ -156,28 +135,19 @@ export default function LibPage() {
           ) : (
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
               {readBooks.map((book) => (
-                <div key={book.id} className="relative group">
-                  <div>
-                    <Card
-                      id={book.id}
-                      title={book.title}
-                      imageUrl={book.imageUrl}
-                      isRead={true}
-                      author={book.author}
-                      description={book.description}
-                    />
-                  </div>
-
-                  {/* Remove button */}
-                  <button
-                    onClick={() => handleRemoveBook(book.id)}
-                    className="absolute top-2 left-2 bg-red-500 text-white p-1 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-200 hover:bg-red-600"
-                    title="Remove from library"
-                  >
-                    <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-                    </svg>
-                  </button>
+                <div key={book.id} className="relative">
+                  <Card
+                    id={book.id}
+                    title={book.title}
+                    imageUrl={book.imageUrl}
+                    isRead={true}
+                    author={book.author}
+                    description={book.description}
+                    showButtons={true}
+                    buttonType="read"
+                    onStart={() => markAsUnread(book.id)}
+                    onTrash={() => handleRemoveBook(book.id)}
+                  />
                 </div>
               ))}
             </div>

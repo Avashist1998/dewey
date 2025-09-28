@@ -131,7 +131,7 @@ export default function FeedPage() {
             <p className="text-gray-600 mb-4">{error}</p>
             <button 
               onClick={() => window.location.reload()} 
-              className="bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700 transition-colors"
+              className="bg-blue-600 text-white px-4 py-2 rounded-md"
             >
               Try Again
             </button>
@@ -195,7 +195,7 @@ export default function FeedPage() {
                       <h4 className="text-sm font-medium text-gray-900 mb-3">Add to Library</h4>
                       <div className="space-y-2">
                         <button
-                          className="w-full bg-yellow-500 text-white px-4 py-2 rounded-md hover:bg-yellow-600 transition-colors flex items-center justify-center space-x-2"
+                          className="w-full bg-yellow-500 text-white px-4 py-2 rounded-md flex items-center justify-center space-x-2"
                           onClick={(e) => { e.stopPropagation(); handleAddAsWantToRead(book); }}
                         >
                           <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
@@ -204,7 +204,7 @@ export default function FeedPage() {
                           <span>Want to Read</span>
                         </button>
                         <button
-                          className="w-full bg-green-600 text-white px-4 py-2 rounded-md hover:bg-green-700 transition-colors flex items-center justify-center space-x-2"
+                          className="w-full bg-green-600 text-white px-4 py-2 rounded-md flex items-center justify-center space-x-2"
                           onClick={(e) => { e.stopPropagation(); handleAddAsRead(book); }}
                         >
                           <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -213,7 +213,7 @@ export default function FeedPage() {
                           <span>Mark as Read</span>
                         </button>
                         <button
-                          className="w-full bg-gray-200 text-gray-800 px-4 py-2 rounded-md hover:bg-gray-300 transition-colors"
+                          className="w-full bg-gray-200 text-gray-800 px-4 py-2 rounded-md"
                           onClick={(e) => { e.stopPropagation(); closeActionMenu(); }}
                         >
                           Cancel

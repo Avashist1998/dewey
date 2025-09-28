@@ -4,6 +4,12 @@
 
 Dewey is a cutting-edge book recommendation platform that helps users discover their next great read through intelligent, real-time recommendations powered by [Gray Whale AI](https://graywhale.ai). Track your reading journey, manage your personal library, and get lightning-fast book suggestions tailored to your interests and reading behavior.
 
+## 🎬 Demo
+
+![Dewey Demo](demo.gif)
+
+*Experience Dewey's intelligent book recommendations, linger tracking, and seamless library management in action*
+
 ## ✨ Features
 
 ### 🎯 **Smart Recommendations**

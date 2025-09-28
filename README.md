@@ -2,12 +2,12 @@
 
 > *Built in 3 days at Developer Camp 2025*
 
-Dewey is a cutting-edge book recommendation platform that helps users discover their next great read through intelligent, real-time recommendations powered by GreyWhale AI. Track your reading journey, manage your personal library, and get lightning-fast book suggestions tailored to your interests and reading behavior.
+Dewey is a cutting-edge book recommendation platform that helps users discover their next great read through intelligent, real-time recommendations powered by [Gray Whale AI](https://graywhale.ai). Track your reading journey, manage your personal library, and get lightning-fast book suggestions tailored to your interests and reading behavior.
 
 ## ✨ Features
 
 ### 🎯 **Smart Recommendations**
-- **Real-time AI-powered suggestions** using GreyWhale API
+- **Real-time AI-powered suggestions** using [Gray Whale API](https://graywhale.ai)
 - **Behavioral learning** through advanced linger tracking
 - **Search-driven discovery** with natural language queries
 - **Infinite scroll** for seamless browsing experience
@@ -26,7 +26,7 @@ Dewey is a cutting-edge book recommendation platform that helps users discover t
 
 ### Backend
 - **Python** - API exploration and experimentation
-- **GreyWhale API** - AI-powered recommendation engine
+- **[Gray Whale AI](https://graywhale.ai)** - Foundational AI model designed for privacy, transparency & speed
 - **RESTful Architecture** - Clean, scalable API design
 
 ### Key Libraries & Tools
@@ -66,7 +66,7 @@ test_api/
 ### Prerequisites
 - Node.js 18+ 
 - Python 3.8+
-- GreyWhale API access token
+- [Gray Whale AI](https://graywhale.ai) API access token
 
 ### Frontend Setup
 
@@ -85,7 +85,7 @@ test_api/
    # Create .env.local file
    NEXT_PUBLIC_API_URL=http://localhost:8000
    NEXT_PUBLIC_PROJECT_NAME=dewey
-   NEXT_PUBLIC_API_TOKEN=your_greywhale_token
+   NEXT_PUBLIC_API_TOKEN=your_gray_whale_token
    ```
 
 4. **Start the development server**
@@ -107,7 +107,7 @@ test_api/
    ```bash
    # Create .env file or set environment variables
    export PROJECT_NAME=dewey
-   export ACCESS_TOKEN=your_greywhale_token
+   export ACCESS_TOKEN=your_gray_whale_token
    export USER=your_username
    export PASS=your_password
    ```
@@ -126,17 +126,17 @@ test_api/
 
 ### 1. **Personalized Feed**
 - Each user gets a unique session ID
-- GreyWhale API generates initial recommendations
+- [Gray Whale AI](https://graywhale.ai) generates initial recommendations using their foundational model
 - Real-time updates based on user interactions
 
 ### 2. **Linger Tracking Magic**
 - **Intersection Observer** tracks which books users view
 - **Time-based metrics** measure engagement (minimum 100ms)
-- **Behavioral data** sent to GreyWhale for improved recommendations
+- **Behavioral data** sent to Gray Whale for improved recommendations
 - **Enter count** tracks repeated views of the same book
 
 ### 3. **Smart Search**
-- Natural language processing through GreyWhale
+- Natural language processing through Gray Whale
 - Context-aware results that understand intent
 - Real-time refinement based on search history
 
@@ -151,16 +151,16 @@ test_api/
 - Manages recommendation fetching and state
 - Integrates linger tracking data
 - Handles infinite scroll and pagination
-- Converts API responses to frontend models
+- Converts Gray Whale API responses to frontend models
 
 ### `useLingerTracking` Hook
 - Tracks user engagement with book cards
 - Uses Intersection Observer for accurate viewport detection
-- Generates behavioral events for GreyWhale API
+- Generates behavioral events for Gray Whale API
 - Optimized for performance with minimal overhead
 
 ### `RecommendationService`
-- Handles all GreyWhale API communication
+- Handles all Gray Whale API communication
 - Manages authentication and error handling
 - Formats requests and responses
 - Supports both live and mock data modes
@@ -172,7 +172,7 @@ The linger tracking system is a sophisticated behavioral analysis tool that:
 
 - **Monitors viewport intersection** at 50% visibility threshold
 - **Tracks multiple metrics**: total time viewed, enter count, session data
-- **Sends intelligent events** to GreyWhale for recommendation improvement
+- **Sends intelligent events** to Gray Whale for recommendation improvement
 - **Resets appropriately** on new searches to maintain relevance
 
 ### Real-time Recommendations
@@ -183,10 +183,10 @@ The linger tracking system is a sophisticated behavioral analysis tool that:
 
 ## 🎯 Developer Camp Achievement
 
-Built in just **3 days** during Developer Camp 2025, Dewey showcases:
+Built in just **3 days** during [Developer Camp 2025](https://developer.camp), Dewey showcases:
 
 - **Rapid prototyping** with modern web technologies
-- **AI integration** using GreyWhale's powerful recommendation engine
+- **AI integration** using [Gray Whale's](https://graywhale.ai) powerful foundational AI model
 - **Advanced UX patterns** like linger tracking and infinite scroll
 - **Full-stack development** from API to polished frontend
 - **Mobile-first design** with responsive layouts
@@ -211,7 +211,12 @@ This project was built during a hackathon, but we welcome contributions! Feel fr
 
 ## 📝 License
 
-Built with ❤️ during Developer Camp 2025. Open source and available for learning and improvement.
+Built with ❤️ during [Developer Camp 2025](https://developer.camp). Open source and available for learning and improvement.
+
+## 🔗 Related Links
+
+- **[Gray Whale AI](https://graywhale.ai)** - AI developer ecosystem providing foundational models for privacy, transparency & speed
+- **[Developer Camp](https://developer.camp)** - Three-day hackathon and community event fostering innovation worldwide
 
 ---
 

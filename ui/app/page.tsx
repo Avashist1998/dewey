@@ -27,6 +27,38 @@ export default function FeedPage() {
 
   const closeActionMenu = useCallback(() => setActionForId(null), []);
 
+  // Infinite scroll logic
+  useEffect(() => {
+    const handleScroll = () => {
+      // Check if user has scrolled near the bottom of the page
+      const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+      const windowHeight = window.innerHeight;
+      const documentHeight = document.documentElement.scrollHeight;
+      
+      // Trigger load more when user is within 200px of the bottom
+      const threshold = 200;
+      const nearBottom = scrollTop + windowHeight >= documentHeight - threshold;
+      
+      if (nearBottom && !loading && books.length > 0) {
+        loadMore();
+      }
+    };
+
+    // Throttle scroll events to prevent excessive API calls
+    let timeoutId: NodeJS.Timeout;
+    const throttledHandleScroll = () => {
+      clearTimeout(timeoutId);
+      timeoutId = setTimeout(handleScroll, 100);
+    };
+
+    window.addEventListener('scroll', throttledHandleScroll);
+    
+    return () => {
+      window.removeEventListener('scroll', throttledHandleScroll);
+      clearTimeout(timeoutId);
+    };
+  }, [loading, books.length, loadMore]);
+
   // Callback ref to register cards for tracking
   const cardRef = useCallback((element: HTMLDivElement | null, trackingId: string) => {
     if (element) {
@@ -196,21 +228,15 @@ export default function FeedPage() {
           </div>
         </div>
 
-      <div className="text-center mt-8">
-        {loading ? (
+      {/* Loading indicator for infinite scroll */}
+      {loading && books.length > 0 && (
+        <div className="text-center mt-8">
           <div className="flex justify-center items-center">
-          <LoadingSpinner size="large" />
+            <LoadingSpinner size="large" />
           </div>
-        ) : (
-          <button
-            onClick={loadMore}
-            disabled={loading}
-            className="bg-blue-600 text-white px-6 py-3 rounded-md hover:bg-blue-700 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
-          >
-            Load More
-          </button>
-        )}
-      </div>
+          <p className="text-gray-500 text-sm mt-2">Loading more books...</p>
+        </div>
+      )}
       </PageLayout>
     </>
   );
